@@ -3,14 +3,14 @@ option java_multiple_files=true;
 option java_package="com.atmosware.Superonline";
 
 service StockService {
-  rpc AddCampaign (CampaignRequest) returns (CampaignResponse);
+  rpc AddCampaign (StockRequest) returns (StockResponse);
 }
 
-message CampaignRequest {
-  string campaignName = 1;
-  int32 campaignStock = 2;
+message StockRequest {
+  string stockName = 1;
+  int32 stockNumber = 2;
 }
 
-message CampaignResponse {
+message StockResponse {
   string message = 1;
 }

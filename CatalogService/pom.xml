@@ -24,10 +24,38 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>io.github.lognet</groupId>
+			<groupId>net.devh</groupId>
 			<artifactId>grpc-spring-boot-starter</artifactId>
-			<version>${lognet.grpc.version}</version>
+			<version>3.1.0.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.grpc</groupId>
+					<artifactId>grpc-netty-shaded</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-stub</artifactId>
+			<version>1.64.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-protobuf</artifactId>
+			<version>1.64.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-netty</artifactId>
+			<version>1.64.0</version>
+		</dependency>
+
+
+	<!--		<dependency>-->
+<!--			<groupId>io.github.lognet</groupId>-->
+<!--			<artifactId>grpc-spring-boot-starter</artifactId>-->
+<!--			<version>${lognet.grpc.version}</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
@@ -112,7 +140,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<extensions>
 			<extension>
@@ -149,3 +176,69 @@
 
 
 </project>
+
+
+		<!--	<build>-->
+<!--		<plugins>-->
+<!--			&lt;!&ndash; Spring Boot Plugin &ndash;&gt;-->
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--			</plugin>-->
+
+<!--			&lt;!&ndash; Protobuf Maven Plugin &ndash;&gt;-->
+<!--			<plugin>-->
+<!--				<groupId>org.xolstice.maven.plugins</groupId>-->
+<!--				<artifactId>protobuf-maven-plugin</artifactId>-->
+<!--				<version>0.6.1</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>compile</goal>-->
+<!--							<goal>compile-custom</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<protoSourceRoot>src/main/proto</protoSourceRoot>-->
+<!--					<outputDirectory>target/generated-sources/protobuf/java</outputDirectory>-->
+<!--&lt;!&ndash;					<plugins>&ndash;&gt;-->
+<!--&lt;!&ndash;						<plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;							<groupId>com.google.protobuf</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;							<artifactId>protoc</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;							<version>1.64.0</version>&ndash;&gt;-->
+<!--&lt;!&ndash;						</plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;						<plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;							<groupId>io.grpc</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;							<artifactId>protoc-gen-grpc-java</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;							<version>1.64.0</version>&ndash;&gt;-->
+<!--&lt;!&ndash;						</plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;					</plugins>&ndash;&gt;-->
+<!--				</configuration>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>-->
+
+<!--	<profiles>-->
+<!--		<profile>-->
+<!--			<id>generate-sources</id>-->
+<!--			<build>-->
+<!--				<plugins>-->
+<!--					<plugin>-->
+<!--						<groupId>org.xolstice.maven.plugins</groupId>-->
+<!--						<artifactId>protobuf-maven-plugin</artifactId>-->
+<!--						<version>0.6.1</version>-->
+<!--						<executions>-->
+<!--							<execution>-->
+<!--								<goals>-->
+<!--									<goal>compile</goal>-->
+<!--									<goal>compile-custom</goal>-->
+<!--								</goals>-->
+<!--							</execution>-->
+<!--						</executions>-->
+<!--					</plugin>-->
+<!--				</plugins>-->
+<!--			</build>-->
+<!--		</profile>-->
+<!--	</profiles>-->
+<!--</project>-->

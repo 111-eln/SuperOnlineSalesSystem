@@ -13,7 +13,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 
-@Mapper(componentModel = "spring")
+//@Mapper(componentModel = "spring")
 public interface CampaignMapper {
     CampaignMapper INSTANCE = Mappers.getMapper(CampaignMapper.class);
     CreateCampaignResponse campaignToCreateCampaignResponse(Campaign campaign);

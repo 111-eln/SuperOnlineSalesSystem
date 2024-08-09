@@ -1,7 +1,5 @@
 package com.atmosware.Superonline.CatalogService.business.concrete;
 
-import com.atmosware.Superonline.CampaignRequest;
-import com.atmosware.Superonline.CampaignResponse;
 import com.atmosware.Superonline.CatalogService.business.abstracts.CampaignService;
 import com.atmosware.Superonline.CatalogService.dataAccess.CampaignRedisRepository;
 import com.atmosware.Superonline.CatalogService.dataAccess.CampaignRepository;
@@ -15,6 +13,8 @@ import com.atmosware.Superonline.CatalogService.dtos.responses.UpdateCampaignRes
 import com.atmosware.Superonline.CatalogService.entities.Campaign;
 import com.atmosware.Superonline.CatalogService.mapper.CampaignMapper;
 
+import com.atmosware.Superonline.StockRequest;
+import com.atmosware.Superonline.StockResponse;
 import com.atmosware.Superonline.StockServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -37,10 +37,10 @@ public class CampaignManager implements CampaignService {
         static Logger logger= LoggerFactory.getLogger(CampaignManager.class);
 
     public CampaignRepository campaignRepository;
-    public ManagedChannel managedChannel= ManagedChannelBuilder.forAddress("127.0.0.1",6565).usePlaintext().idleTimeout(100, TimeUnit.SECONDS) // 5 saniye içinde inaktif kalırsa bağlantıyı kapatır
+    public ManagedChannel managedChannel= ManagedChannelBuilder.forAddress("localhost",9090).usePlaintext() // 5 saniye içinde inaktif kalırsa bağlantıyı kapatır
         .build();
 
-    public StockServiceGrpc.StockServiceBlockingStub blockingStub=StockServiceGrpc.newBlockingStub(managedChannel);
+    public StockServiceGrpc.StockServiceBlockingStub blockingStub;
     private final CampaignRedisRepository campaignRedisRepository;
 
 
@@ -54,17 +54,18 @@ public class CampaignManager implements CampaignService {
 
     @Override
     public CreateCampaignResponse addCampaign(CreateCampaignRequest request) {
-        CampaignRequest request1 = CampaignRequest.newBuilder()
-                .setCampaignName(request.getCampaignName())
-                        .setCampaignStock(request.getStockOfCampaign())
+        blockingStub=StockServiceGrpc.newBlockingStub(managedChannel);
+        StockRequest request1 = StockRequest.newBuilder()
+                .setStockName(request.getCampaignName())
+                .setStockNumber(request.getStockOfCampaign())
                 .build();
 
 //        CampaignResponse response=blockingStub.addCampaign(request1);
-        CampaignRequest requestdene=CampaignRequest.newBuilder()
-                .setCampaignName("asdddd")
-                .setCampaignStock(91)
+        StockRequest requestdene=StockRequest.newBuilder()
+                .setStockName("asdddd")
+                .setStockNumber(91)
                 .build();
-        CampaignResponse response=blockingStub.addCampaign(requestdene);
+        StockResponse response=blockingStub.addCampaign(requestdene);
 
 
 
