@@ -1,0 +1,31 @@
+grpc:
+  server:
+    port: 50051
+server:
+  port: 9018
+spring:
+  cloud:
+    config:
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: stock-server
+  datasource:
+    #    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/stockOfProduct2
+    username: postgres
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
+        show-sql: true
+
+

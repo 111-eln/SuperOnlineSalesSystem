@@ -7,20 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-campaign" />
-        <module name="CatalogService" />
-        <module name="discoveryserver" />
-        <module name="OrderService" />
-        <module name="StockService" />
         <module name="gatewayService" />
+        <module name="StockServer" />
+        <module name="common-product" />
+        <module name="CatalogService" />
+        <module name="OrderService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-campaign" target="17" />
+      <module name="discoveryserver" target="17" />
+      <module name="StockService" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CatalogService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
+      <module name="StockServer" options="-parameters" />
       <module name="StockService" options="-parameters" />
+      <module name="common-product" options="" />
       <module name="discoveryserver" options="-parameters" />
       <module name="gatewayService" options="-parameters" />
     </option>
