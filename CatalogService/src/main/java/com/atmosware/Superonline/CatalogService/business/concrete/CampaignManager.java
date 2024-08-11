@@ -13,9 +13,6 @@ import com.atmosware.Superonline.CatalogService.dtos.responses.UpdateCampaignRes
 import com.atmosware.Superonline.CatalogService.entities.Campaign;
 import com.atmosware.Superonline.CatalogService.mapper.CampaignMapper;
 
-import com.atmosware.Superonline.StockRequest;
-import com.atmosware.Superonline.StockResponse;
-import com.atmosware.Superonline.StockServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.AllArgsConstructor;
@@ -26,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -37,10 +33,7 @@ public class CampaignManager implements CampaignService {
         static Logger logger= LoggerFactory.getLogger(CampaignManager.class);
 
     public CampaignRepository campaignRepository;
-    public ManagedChannel managedChannel= ManagedChannelBuilder.forAddress("localhost",9090).usePlaintext() // 5 saniye içinde inaktif kalırsa bağlantıyı kapatır
-        .build();
 
-    public StockServiceGrpc.StockServiceBlockingStub blockingStub;
     private final CampaignRedisRepository campaignRedisRepository;
 
 
@@ -54,22 +47,7 @@ public class CampaignManager implements CampaignService {
 
     @Override
     public CreateCampaignResponse addCampaign(CreateCampaignRequest request) {
-        blockingStub=StockServiceGrpc.newBlockingStub(managedChannel);
-        StockRequest request1 = StockRequest.newBuilder()
-                .setStockName(request.getCampaignName())
-                .setStockNumber(request.getStockOfCampaign())
-                .build();
 
-//        CampaignResponse response=blockingStub.addCampaign(request1);
-        StockRequest requestdene=StockRequest.newBuilder()
-                .setStockName("asdddd")
-                .setStockNumber(91)
-                .build();
-        StockResponse response=blockingStub.addCampaign(requestdene);
-
-
-
-        logger.info(response.getMessage());
         Campaign campaign= CampaignMapper.INSTANCE.createCampaignRequestToCampaign(request);
         campaign.setCreatedDate(LocalDateTime.now());
         Campaign dbCampaign=campaignRepository.save(campaign);

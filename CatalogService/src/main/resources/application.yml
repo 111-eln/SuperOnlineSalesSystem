@@ -1,33 +1,32 @@
-eureka:
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:9020/eureka
-  instance:
-    instance-id: ${spring.application.name}:${instanceId:${random.value}}
-    preferIpAddress: true
+grpc:
+  server:
+    port: 50053
 server:
   port: 9009
 spring:
-#  grpc:
-#    client:
-#      server:
-#        address: "localhost:6565"
+  cloud:
+    config:
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: catalog-service
   datasource:
-    driver-class-name: org.postgresql.Driver
+#    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/campaigns
     username: postgres
     password: 12345
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
+      javax:
+        persistence:
+          validation:
+            mode: none
+        show-sql: true
 
 #grpc:
 #  client:

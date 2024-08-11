@@ -6,6 +6,7 @@ service ProductService {
   rpc DecreaseStockOfProduct (ProductRequest) returns (ProductResponse);
 }
 
+
 message ProductRequest {
   string packageNameofOrder = 1;
 

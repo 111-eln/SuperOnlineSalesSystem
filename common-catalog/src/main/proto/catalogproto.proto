@@ -1,0 +1,14 @@
+syntax= "proto3";
+option java_multiple_files=true;
+option java_package="com.atmosware.SuperOnline";
+service CatalogprotoService{
+  rpc StockCatalogUpdate(CatalogUpdatedRequest) returns (CatalogUpdatedResponse);
+
+}
+message CatalogUpdatedRequest{
+  string packageNameofOrder = 1;
+
+}
+message CatalogUpdatedResponse{
+  string messageResponse=1;
+}

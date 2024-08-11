@@ -1,5 +1,6 @@
 package com.atmosware.SuperOnline.StockServer;
 
+
 import com.atmosware.SuperOnline.ProductRequest;
 import com.atmosware.SuperOnline.ProductResponse;
 import com.atmosware.SuperOnline.ProductServiceGrpc;
@@ -20,8 +21,9 @@ public class ServerOfProduct extends ProductServiceGrpc.ProductServiceImplBase {
     @Override
     public void decreaseStockOfProduct(ProductRequest request, StreamObserver<ProductResponse> responseObserver) {
         CampaignStock campaign= repository.findByCampaignName(request.getPackageNameofOrder());
-//        logger.info("istek alindi"+ request.getPackageNameofOrder());
         int guncelStok=campaign.getCampaignStock()-1;
+        campaign.setCampaignStock(guncelStok);
+        repository.save(campaign);
         ProductResponse response=ProductResponse.newBuilder().setStockNumberOfProduct(guncelStok).setMessage("stok dusuruldu").build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
