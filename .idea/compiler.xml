@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CatalogService" />
-        <module name="common-catalog" />
-        <module name="OrderService" />
         <module name="gatewayService" />
         <module name="StockServer" />
         <module name="common-product" />
+        <module name="CatalogService" />
+        <module name="common-catalog" />
+        <module name="OrderService" />
+        <module name="dicoveryServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="StockService" options="-parameters" />
       <module name="common-catalog" options="" />
       <module name="common-product" options="" />
+      <module name="dicoveryServer" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="gatewayService" options="-parameters" />
     </option>
