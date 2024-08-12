@@ -11,6 +11,7 @@
         <module name="StockServer" />
         <module name="common-product" />
         <module name="CatalogService" />
+        <module name="commonPackage" />
         <module name="common-catalog" />
         <module name="OrderService" />
         <module name="dicoveryServer" />
@@ -30,6 +31,7 @@
       <module name="StockService" options="-parameters" />
       <module name="common-catalog" options="" />
       <module name="common-product" options="" />
+      <module name="commonPackage" options="-parameters" />
       <module name="dicoveryServer" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="gatewayService" options="-parameters" />

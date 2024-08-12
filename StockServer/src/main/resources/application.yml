@@ -13,6 +13,15 @@ grpc:
 server:
   port: 9018
 spring:
+  amqp:
+    deserialization:
+      trust:
+        all: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     config:
       enabled: true

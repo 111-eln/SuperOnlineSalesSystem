@@ -1,5 +1,6 @@
 package com.atmosware.Superonline.CatalogService.business.concrete;
 
+import com.atmosware.SuperOnline.commonPackage.CommonCampaignStock;
 import com.atmosware.Superonline.CatalogService.business.abstracts.CampaignService;
 import com.atmosware.Superonline.CatalogService.dataAccess.CampaignRedisRepository;
 import com.atmosware.Superonline.CatalogService.dataAccess.CampaignRepository;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,13 +36,16 @@ public class CampaignManager implements CampaignService {
 
     public CampaignRepository campaignRepository;
 
-    private final CampaignRedisRepository campaignRedisRepository;
+    private  CampaignRedisRepository campaignRedisRepository;
+    public final RabbitTemplate rabbitTemplate;
 
 
-    public CampaignManager(CampaignRepository campaignRepository, CampaignRedisRepository campaignRedisRepository) {
+
+    public CampaignManager(CampaignRepository campaignRepository, CampaignRedisRepository campaignRedisRepository, RabbitTemplate rabbitTemplate) {
         this.campaignRepository = campaignRepository;
 
         this.campaignRedisRepository = campaignRedisRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
 
@@ -48,7 +53,11 @@ public class CampaignManager implements CampaignService {
     @Override
     public CreateCampaignResponse addCampaign(CreateCampaignRequest request) {
 
+
         Campaign campaign= CampaignMapper.INSTANCE.createCampaignRequestToCampaign(request);
+        CommonCampaignStock commonCampaignStock=new CommonCampaignStock(campaign.getId(), request.getCampaignName(),request.getStockOfCampaign());
+//        rabbitTemplate.convertAndSend(commonCampaignStock);
+        rabbitTemplate.convertAndSend("catalogStockExchange","routing_key_examp",commonCampaignStock);
         campaign.setCreatedDate(LocalDateTime.now());
         Campaign dbCampaign=campaignRepository.save(campaign);
         Campaign redisCampaign=campaignRedisRepository.save(campaign);

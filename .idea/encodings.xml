@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/common-campaign/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common-catalog/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common-product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commonPackage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commonPackage/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dicoveryServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discoveryserver/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gatewayService/src/main/java" charset="UTF-8" />
