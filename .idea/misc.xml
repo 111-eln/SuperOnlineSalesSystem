@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/common-catalog/pom.xml" />
         <option value="$PROJECT_DIR$/dicoveryServer/pom.xml" />
         <option value="$PROJECT_DIR$/commonPackage/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

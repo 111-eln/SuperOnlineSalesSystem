@@ -14,6 +14,7 @@
         <module name="commonPackage" />
         <module name="common-catalog" />
         <module name="OrderService" />
+        <module name="PaymentService" />
         <module name="dicoveryServer" />
       </profile>
     </annotationProcessing>
@@ -27,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CatalogService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
+      <module name="PaymentService" options="-parameters" />
       <module name="StockServer" options="-parameters" />
       <module name="StockService" options="-parameters" />
       <module name="common-catalog" options="" />
