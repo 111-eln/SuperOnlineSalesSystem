@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
+import java.io.IOException;
+
 @GrpcService
 @AllArgsConstructor
 
@@ -28,13 +30,6 @@ public class ServerOfProduct extends ProductServiceGrpc.ProductServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-    @RabbitListener(queues = "catalogStockQueue")
-    public void receiveMessage(CommonCampaignStock campaign) {
-        CampaignStock campaignStock=new CampaignStock(campaign.getId(),
-                campaign.getCampaignName(), campaign.getCampaignStock());
-        repository.save(campaignStock);
 
-        // Ürün stoğunu güncelleme veya stokla ilgili başka işlemler burada yapılabilir
-    }
 
 }

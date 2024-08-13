@@ -55,13 +55,12 @@ public class CampaignManager implements CampaignService {
 
 
         Campaign campaign= CampaignMapper.INSTANCE.createCampaignRequestToCampaign(request);
-        CommonCampaignStock commonCampaignStock=new CommonCampaignStock(campaign.getId(), request.getCampaignName(),request.getStockOfCampaign());
-//        rabbitTemplate.convertAndSend(commonCampaignStock);
-        rabbitTemplate.convertAndSend("catalogStockExchange","routing_key_examp",commonCampaignStock);
         campaign.setCreatedDate(LocalDateTime.now());
         Campaign dbCampaign=campaignRepository.save(campaign);
         Campaign redisCampaign=campaignRedisRepository.save(campaign);
         CreateCampaignResponse response2=CampaignMapper.INSTANCE.campaignToCreateCampaignResponse(dbCampaign);
+        CommonCampaignStock commonCampaignStock=new CommonCampaignStock(dbCampaign.getId(), request.getCampaignName(),request.getStockOfCampaign());
+        rabbitTemplate.convertAndSend("catalogStockExchange","routing_key_examp",commonCampaignStock);
         return response2;
     }
 
