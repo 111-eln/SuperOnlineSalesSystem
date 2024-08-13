@@ -1,26 +1,39 @@
 package com.atmosware.SuperOnline.OrderService.business;
 
 import com.atmosware.SuperOnline.*;
+import com.atmosware.SuperOnline.OrderService.core.exceptions.types.BusinessException;
 import com.atmosware.SuperOnline.OrderService.dataAccess.OrderRepository;
 import com.atmosware.SuperOnline.OrderService.dtos.requests.CreateOrderRequest;
 
 
+import com.atmosware.SuperOnline.OrderService.entities.Order;
 import com.atmosware.SuperOnline.ProductRequest;
 import com.atmosware.SuperOnline.ProductResponse;
 import com.atmosware.SuperOnline.ProductServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+
+
 public class OrderManager implements OrderService{
     static Logger logger= LoggerFactory.getLogger(OrderManager.class);
+    public final RabbitTemplate rabbitTemplate;
 
     public OrderRepository orderRepository;
+
+
+    public OrderManager(RabbitTemplate rabbitTemplate, OrderRepository orderRepository) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.orderRepository = orderRepository;
+    }
+
     //@Transactional
     @Override
     public void add(CreateOrderRequest createOrderRequest) {
@@ -37,14 +50,18 @@ public class OrderManager implements OrderService{
             CatalogUpdatedRequest catalogUpdatedRequest= CatalogUpdatedRequest.newBuilder().setPackageNameofOrder(createOrderRequest.getPackageNameofOrder()).build();
             CatalogUpdatedResponse catalogUpdatedResponse=catalogBlockingStub.stockCatalogUpdate(catalogUpdatedRequest);
             logger.info(catalogUpdatedResponse.getMessageResponse());
+            rabbitTemplate.convertAndSend("orderNotificationExchange","routing_key_orNot","Order process is not done");
+
         }
         else if (response.getStockNumberOfProduct()>1){
             logger.info("stock mevcut");
+            rabbitTemplate.convertAndSend("orderNotificationExchange","routing_key_orNot","order process is done");
+
         }
 
         else{
-            //TODO:burada stok bitti diye business exception fırlatilmali
-            logger.info("stok yok");
+            throw new BusinessException("Stok yok");
+
         }
 
 

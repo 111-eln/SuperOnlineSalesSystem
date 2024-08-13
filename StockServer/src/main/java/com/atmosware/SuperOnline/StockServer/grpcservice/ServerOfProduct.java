@@ -1,17 +1,15 @@
-package com.atmosware.SuperOnline.StockServer;
+package com.atmosware.SuperOnline.StockServer.grpcservice;
 
 
 import com.atmosware.SuperOnline.ProductRequest;
 import com.atmosware.SuperOnline.ProductResponse;
 import com.atmosware.SuperOnline.ProductServiceGrpc;
 //import com.atmosware.Superonline.CampaignStock;
-import com.atmosware.SuperOnline.commonPackage.CommonCampaignStock;
+import com.atmosware.SuperOnline.StockServer.dataaccess.CampaignStockRepository;
+import com.atmosware.SuperOnline.StockServer.entity.CampaignStock;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-
-import java.io.IOException;
 
 @GrpcService
 @AllArgsConstructor
@@ -22,7 +20,7 @@ public class ServerOfProduct extends ProductServiceGrpc.ProductServiceImplBase {
 
     @Override
     public void decreaseStockOfProduct(ProductRequest request, StreamObserver<ProductResponse> responseObserver) {
-        com.atmosware.SuperOnline.StockServer.CampaignStock campaign= repository.findByCampaignName(request.getPackageNameofOrder());
+        CampaignStock campaign= repository.findByCampaignName(request.getPackageNameofOrder());
         int guncelStok=campaign.getCampaignStock()-1;
         campaign.setCampaignStock(guncelStok);
         repository.save(campaign);

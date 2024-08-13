@@ -12,6 +12,7 @@
         <module name="common-product" />
         <module name="CatalogService" />
         <module name="commonPackage" />
+        <module name="NotificationService" />
         <module name="common-catalog" />
         <module name="OrderService" />
         <module name="PaymentService" />
@@ -27,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CatalogService" options="-parameters" />
+      <module name="NotificationService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
       <module name="StockServer" options="-parameters" />

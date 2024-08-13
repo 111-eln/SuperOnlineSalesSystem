@@ -46,11 +46,4 @@ spring:
             mode: none
         show-sql: true
 
-#grpc:
-#  client:
-#    stock-service:
-#      enableKeepAlive: true
-#      keepAliveWithoutCalls: true
-#      negotiationType: plaintext
-
 

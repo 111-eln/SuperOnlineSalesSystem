@@ -12,4 +12,5 @@ public class CreateOrderRequest {
     private String orderAddress;
     private String orderDetails;
     private int customerNumber;
+
 }

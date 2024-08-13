@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface CampaignService {
     CreateCampaignResponse addCampaign(CreateCampaignRequest request);
-//    DeleteCampaignResponse deleteCampaign(DeleteCampaignRequest request);
-//    UpdateCampaignResponse updateCampaign(UpdateCampaignRequest request);
-//    List<GetAllCampaignResponse> getAllCampaign();
+    DeleteCampaignResponse deleteCampaign(DeleteCampaignRequest request);
+    UpdateCampaignResponse updateCampaign(UpdateCampaignRequest request);
+    List<GetAllCampaignResponse> getAllCampaign();
 
 }

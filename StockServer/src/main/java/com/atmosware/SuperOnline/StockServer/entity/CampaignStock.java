@@ -1,4 +1,4 @@
-package com.atmosware.SuperOnline.StockServer;
+package com.atmosware.SuperOnline.StockServer.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

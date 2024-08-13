@@ -1,4 +1,4 @@
-package com.atmosware.SuperOnline.StockServer;
+package com.atmosware.SuperOnline.StockServer.configuration;
 
 
 import com.atmosware.SuperOnline.commonPackage.CommonCampaignStock;

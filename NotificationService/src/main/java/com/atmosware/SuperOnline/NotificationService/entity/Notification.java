@@ -1,6 +1,6 @@
-package com.atmosware.SuperOnline.OrderService.entities;
-
+package com.atmosware.SuperOnline.NotificationService.entity;
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,20 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="orders")
-public class Order {
+@Table(name="notifications")
+public class Notification {
     @Id
     @GeneratedValue
     private int Id;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private LocalDateTime deletedDate;
-    private String packageNameofOrder;
-    private String orderAddress;
-    private String orderDetails;
-    private String cardName;
-    private String cardNumber;
-    private int ccv;
-
-    private int customerNumber;
+    private String log;
 }

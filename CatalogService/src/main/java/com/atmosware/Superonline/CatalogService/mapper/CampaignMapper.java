@@ -17,12 +17,12 @@ import org.mapstruct.factory.Mappers;
 public interface CampaignMapper {
     CampaignMapper INSTANCE = Mappers.getMapper(CampaignMapper.class);
     CreateCampaignResponse campaignToCreateCampaignResponse(Campaign campaign);
-//    DeleteCampaignResponse campaignToDeleteCampaignResponse(Campaign campaign);
-//    UpdateCampaignResponse campaignToUpdateCampaignResponse(Campaign campaign);
-//    GetAllCampaignResponse campaignToGetAllCampaignResponse(Campaign campaign);
+    DeleteCampaignResponse campaignToDeleteCampaignResponse(Campaign campaign);
+    UpdateCampaignResponse campaignToUpdateCampaignResponse(Campaign campaign);
+    GetAllCampaignResponse campaignToGetAllCampaignResponse(Campaign campaign);
     Campaign createCampaignRequestToCampaign(CreateCampaignRequest request);
-//    Campaign deleteCampaignRequestToCampaign(DeleteCampaignRequest request);
-//    Campaign updateCampaignRequestToCampaign(UpdateCampaignRequest request);
+    Campaign deleteCampaignRequestToCampaign(DeleteCampaignRequest request);
+    Campaign updateCampaignRequestToCampaign(UpdateCampaignRequest request);
 
 
 }

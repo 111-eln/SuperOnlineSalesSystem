@@ -1,5 +1,7 @@
-package com.atmosware.SuperOnline.StockServer;
+package com.atmosware.SuperOnline.StockServer.rabbitmqlistener;
 
+import com.atmosware.SuperOnline.StockServer.dataaccess.CampaignStockRepository;
+import com.atmosware.SuperOnline.StockServer.entity.CampaignStock;
 import com.atmosware.SuperOnline.commonPackage.CommonCampaignStock;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
