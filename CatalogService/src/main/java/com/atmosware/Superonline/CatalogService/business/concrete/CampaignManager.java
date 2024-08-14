@@ -45,9 +45,6 @@ public class CampaignManager implements CampaignService {
         this.campaignRedisRepository = campaignRedisRepository;
         this.rabbitTemplate = rabbitTemplate;
     }
-
-
-
     @Override
     public CreateCampaignResponse addCampaign(CreateCampaignRequest request) {
 

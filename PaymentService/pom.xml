@@ -54,17 +54,22 @@
 <!--		</dependency>-->
 
 <!--		&lt;!&ndash; GraphQL Java Tools &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>com.graphql-java-kickstart</groupId>-->
-<!--			<artifactId>graphql-java-tools</artifactId>-->
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-java-tools</artifactId>
+			<version>13.0.1</version>
 
-<!--		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>4.1.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-spring-boot-starter</artifactId>
+			<version>13.0.1</version> <!-- Sürümü kontrol edin ve gerektiğinde güncelleyin -->
+		</dependency>
 
 		<!-- (Opsiyonel) Spring Boot Starter Web -->
 

@@ -1,4 +1,4 @@
-package com.atmosware.Superonline.PaymentService;
+package com.atmosware.SuperOnline.OrderService.dtos.responses;
 
 import lombok.Data;
 

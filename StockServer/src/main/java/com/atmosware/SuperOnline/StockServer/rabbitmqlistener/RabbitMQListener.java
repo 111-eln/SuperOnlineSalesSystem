@@ -19,6 +19,6 @@ public class RabbitMQListener {
                 campaign.getCampaignName(), campaign.getCampaignStock());
         repository.save(campaignStock);
 
-        // Ürün stoğunu güncelleme veya stokla ilgili başka işlemler burada yapılabilir
+
     }
 }
