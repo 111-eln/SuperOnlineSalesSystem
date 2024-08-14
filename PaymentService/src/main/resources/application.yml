@@ -8,24 +8,15 @@ eureka:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
     preferIpAddress: true
 server:
-  port: 9013
+  port: 9019
 spring:
   main:
     allow-bean-definition-overriding: true
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    queue: orderNotificationQueue
-    exchange: orderNotificationExchange
-    routingkey: routing_key_orNot
-    virtual-host: /
   application:
-    name: order-service
+    name: payment-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/orders
+    url: jdbc:postgresql://localhost:5432/payments
     username: postgres
     password: 12345
   jpa:
@@ -34,12 +25,5 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-grpc:
-  client:
-    stock-server:
-      enableKeepAlive: true
-      keepAliveWithoutCalls: true
-      negotiationType: plaintext
-payment:
-  service:
-    url: http://localhost:9019/api/v1/payments
+
+

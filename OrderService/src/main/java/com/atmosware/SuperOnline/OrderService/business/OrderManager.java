@@ -27,12 +27,18 @@ public class OrderManager implements OrderService{
     public final RabbitTemplate rabbitTemplate;
 
     public OrderRepository orderRepository;
+    public PaymentService paymentService;
 
-
-    public OrderManager(RabbitTemplate rabbitTemplate, OrderRepository orderRepository) {
+    public OrderManager(RabbitTemplate rabbitTemplate, OrderRepository orderRepository, PaymentService paymentService) {
         this.rabbitTemplate = rabbitTemplate;
         this.orderRepository = orderRepository;
+        this.paymentService = paymentService;
     }
+
+//    public OrderManager(RabbitTemplate rabbitTemplate, OrderRepository orderRepository) {
+//        this.rabbitTemplate = rabbitTemplate;
+//        this.orderRepository = orderRepository;
+//    }
 
     //@Transactional
     @Override
@@ -63,6 +69,8 @@ public class OrderManager implements OrderService{
             throw new BusinessException("Stok yok");
 
         }
+
+        paymentService.sendPostRequest(createOrderRequest.getCardInfo());
 
 
 

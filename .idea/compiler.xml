@@ -10,8 +10,8 @@
         <module name="gatewayService" />
         <module name="StockServer" />
         <module name="common-product" />
-        <module name="CatalogService" />
         <module name="commonPackage" />
+        <module name="CatalogService" />
         <module name="NotificationService" />
         <module name="common-catalog" />
         <module name="OrderService" />
